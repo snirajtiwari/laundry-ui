@@ -1,0 +1,29 @@
+.panel-header-recent{
+    background-color: rgb(130, 202, 235);
+    height: 44px;
+    padding: 1px 0px 0px 10px;
+}
+
+.panel-header-recent h4{
+    color: #fff; margin-left:20px; font-weight: 800;
+}
+
+i {
+    margin-right: 5px;
+}
+
+.recent-panel
+{
+    height: 120px;
+}
+
+a{
+    cursor: pointer;
+}
+
+.item-content
+{
+    padding: 10px;
+    border: 1px skyblue solid;
+    background-color: #fff;
+}

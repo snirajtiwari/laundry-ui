@@ -1,0 +1,110 @@
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header-title">
+                        <h4 class="pull-left page-title">Dashboard</h4>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-lg-9 col-xlg-9 col-md-9">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading cust-head">
+                                <h4>ORDER STATUS</h4>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="bar-chart" height="260"></canvas>
+                                <app-barchart></app-barchart>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xlg-3 col-md-3">
+                        <div class="panel panel-primary" style="margin:0px;">
+                            <div class="panel-heading  panel-header-recent">
+                                <h4><i class="fa fa-clock-o"></i>Pending Orders</h4>
+                            </div>
+                            <div class="recent-panel">
+                                <a *ngFor="let order of pendingOrders;" (click)="openOrderDialog(order)">
+                                    <div class="item-content"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                        {{order.orderId}} ({{order.customerName}})</div>
+                                </a>
+                                <div *ngIf="pendingOrders.length == 0">
+                                    <div class="item-content" style="text-align: center;">
+                                        No Data</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-primary" style="margin-top:20px;">
+                            <div class="panel-heading panel-header-recent">
+                                <h4><i class="fa fa-calendar-check-o"></i>Completed Orders</h4>
+                            </div>
+                            <div class="recent-panel">
+                                <a *ngFor="let order of completedOrders;"  (click)="openOrderDialog(order)">
+                                    <div class="item-content"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                        {{order.orderId}} ({{order.customerName}})</div>
+                                </a>
+                                <div *ngIf="completedOrders.length == 0">
+                                    <div class="item-content" style="text-align: center;">
+                                        No Data</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading cust-head">
+                                    <h4>Recent Orders <small>Last 5</small></h4>
+                                </div>
+                                <div id="dashboardTable" class="panel-body">
+                                    <div class="e-table">
+                                        <div class="table-responsive">
+                                            <table datatable [dtOptions]="dtOptions"
+                                                class="table custtable table-striped table-bordered">
+
+                                                <thead>
+                                                    <tr>
+                                                        <th class="max-width sortable">Order ID</th>
+                                                        <th class="sortable sortable--desc">Customer Name</th>
+                                                        <th>Items</th>
+                                                        <th>Status</th>
+                                                        <th>Due Date</th>
+                                                        <th>Order Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let order of orders">
+                                                        <td><a style="cursor: pointer;"
+                                                                (click)="openOrderDialog(order)">{{ order.orderId }}</a>
+                                                        </td>
+                                                        <td>{{ order.customerName }}</td>
+                                                        <td>{{ order.totalItems }}</td>
+                                                        <td>{{ order.orderStatus }}</td>
+                                                        <td>{{ order.estimatedDeliveryDate }}</td>
+                                                        <td>{{ order.orderReceivedDate }}</td>
+                                                    </tr>
+                                                </tbody>
+
+                                                <tbody *ngIf="orders?.length == 0">
+                                                    <tr>
+                                                        <td colspan="6" class="no-data-available">No records found</td>
+                                                    </tr>
+                                                <tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
